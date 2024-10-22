@@ -1,0 +1,14 @@
+<app-places-component title="Favorite Places">
+  @if(isFetching() && !error() && places()?.length !==0){
+  <p class="fallback-text">Fetching User Places</p>
+  } @if(error()){
+  <p class="fallback-text">{{ error() }}</p>
+  } @if(places()){
+  <app-loaded-places
+    [places]="places()!"
+    (selectedPlace)="onSelectedUserPlace($event)"
+  />
+  } @if(places()?.length === 0){
+  <p class="fallback-text">You have not selected any places</p>
+  }
+</app-places-component>
